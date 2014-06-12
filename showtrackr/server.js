@@ -5,6 +5,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
+var async = require('async');
+var request = require('request');
+var xml2js = require('xml2js');
+var _ = require('lodash');
+
 
 // Adding database schema for shows. 
 // Fields are present in data from the TVDB.com API
