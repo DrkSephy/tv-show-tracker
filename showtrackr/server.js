@@ -9,7 +9,7 @@ var bcrypt = require('bcryptjs');
 // Adding database schema for shows. 
 // Fields are present in data from the TVDB.com API
 // Schemas are an abstract representation of the data. 
-var showSchema = new mongoose.Scheme({
+var showSchema = new mongoose.Schema({
     _id: Number,
     name: String,
     airsDayOfWeek: String,
@@ -64,7 +64,7 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
 // update and save data to/from MongoDB. 
 
 var User = mongoose.model('User', userSchema);
-var Show = moongoose.model('Show', showSchema);
+var Show = mongoose.model('Show', showSchema);
 
 // Connect to database. 
 mongoose.connect('localhost');
