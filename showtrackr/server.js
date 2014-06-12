@@ -6,6 +6,32 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
+// Adding database schema for shows. 
+// Fields are present in data from the TVDB.com API
+var showSchema = new mongoose.Scheme({
+    _id: Number,
+    name: String,
+    airsDayOfWeek: String,
+    firstAired: Date,
+    genre: [String],
+    network: String,
+    overview: String,
+    rating: Number,
+    ratingCount: Number,
+    status: String,
+    poster: String,
+    subscribers: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    }],
+    episodes: [{
+        season: Number,
+        episodeNumber: Number,
+        episodeName: String,
+        firstAired: Date,
+        overview: String
+    }]
+});
+
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
