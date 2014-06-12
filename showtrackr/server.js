@@ -93,6 +93,21 @@ app.get('/api/shows', function(req, res, next) {
   });
 });
 
+app.get('/api/shows/:id', function(req, res, next){
+    Show.findById(req.params.id, function(err, show){
+        if (err) return next(err);
+        res.send(show);
+    });
+});
+
+// Error middleware, returns the stack trace and the JSON response 
+// returned with the error.
+
+app.use(function(err, req, res, next){
+    console.error(err.stack);
+    res.send(500, { message: err.message });
+});
+
 
 app.listen(app.get('port'), function(){
     console.log('Express server listening on port: ' + app.get('port'));
